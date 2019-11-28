@@ -1,7 +1,8 @@
-package com.tokopedia.test.appintentnslice
+package com.tokopedia.test.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tokopedia.test.R
 
 class MainActivity : AppCompatActivity() {
 

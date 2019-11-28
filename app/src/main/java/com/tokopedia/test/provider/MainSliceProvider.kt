@@ -1,4 +1,4 @@
-package com.tokopedia.test.appintentnslice
+package com.tokopedia.test.provider
 
 import android.content.Context
 import android.net.Uri
@@ -8,6 +8,7 @@ import androidx.slice.SliceProvider
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.header
 import androidx.slice.builders.list
+import com.tokopedia.test.R
 
 class MainSliceProvider : SliceProvider() {
     private lateinit var contextNonNull: Context
@@ -19,7 +20,7 @@ class MainSliceProvider : SliceProvider() {
 
     override fun onBindSlice(sliceUri: Uri): Slice? {
         when(sliceUri.path){
-            "/main" -> return createMainSlice(sliceUri)
+            "/a" -> return createMainSlice(sliceUri)
         }
         return null
     }
