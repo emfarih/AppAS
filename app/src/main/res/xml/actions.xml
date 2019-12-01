@@ -2,17 +2,33 @@
 <actions>
     <action intentName="actions.intent.OPEN_APP_FEATURE">
         <parameter name="feature">
-            <entity-set-reference entitySetId="FeatureEntitySet"/>
+            <entity-set-reference entitySetId="FeatureEntitySet" />
         </parameter>
         <fulfillment urlTemplate="m://appas/{featureName}">
             <parameter-mapping
                 intentParameter="feature"
-                urlParameter="featureName"/>
+                urlParameter="featureName" />
+        </fulfillment>
+    </action>
+    <action intentName="actions.intent.GET_ACCOUNT">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://com.m.appas/{sliceView}">
+            <parameter-mapping
+                intentParameter="account.name"
+                urlParameter="sliceView" />
         </fulfillment>
     </action>
     <entity-set entitySetId="FeatureEntitySet">
-        <entity identifier="main" name="main feature" />
-        <entity identifier="second" name="second feature" />
-        <entity identifier="umrah" name="umrah feature" alternateName="@array/umrah" />
+        <entity
+            name="main feature"
+            identifier="main" />
+        <entity
+            name="second feature"
+            identifier="second" />
+        <entity
+            name="umrah feature"
+            alternateName="@array/umrah"
+            identifier="umrah" />
     </entity-set>
 </actions>
