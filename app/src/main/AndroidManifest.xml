@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <meta-data android:name="com.google.android.actions" android:resource="@xml/actions" />
+
         <activity android:name=".activity.UmrahActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -18,7 +20,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="m"
                     android:host="appas"
-                    android:pathPrefix="/third" />
+                    android:pathPrefix="/umrah" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.SecondActivity">

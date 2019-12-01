@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actions>
+    <action intentName="actions.intent.OPEN_APP_FEATURE">
+        <parameter name="feature">
+            <entity-set-reference entitySetId="FeatureEntitySet"/>
+        </parameter>
+        <fulfillment urlTemplate="m://appas/{featureName}">
+            <parameter-mapping
+                intentParameter="feature"
+                urlParameter="featureName"/>
+        </fulfillment>
+    </action>
+    <entity-set entitySetId="FeatureEntitySet">
+        <entity identifier="main" name="main feature" />
+        <entity identifier="second" name="second feature" />
+        <entity identifier="umrah" name="umrah feature" alternateName="@array/umrah" />
+    </entity-set>
+</actions>
