@@ -1,8 +1,8 @@
-package com.tokopedia.test.activity
+package com.m.appas.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.tokopedia.test.R
+import com.m.appas.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.tokopedia.test">
+    package="com.m.appas">
 
     <application
         android:allowBackup="true"
@@ -11,26 +11,49 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.UmrahActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="m"
+                    android:host="appas"
+                    android:pathPrefix="/third" />
             </intent-filter>
         </activity>
-
-        <!-- TODO: Step 2.1, Add SliceProvider to Manifest. -->
+        <activity android:name=".activity.SecondActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="m"
+                    android:host="appas"
+                    android:pathPrefix="/second" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="m"
+                    android:host="appas"
+                    android:pathPrefix="/main" />
+            </intent-filter>
+        </activity>
         <provider
-            android:authorities="com.tokopedia.test"
             android:name=".provider.MainSliceProvider"
-            android:grantUriPermissions="true"
-            android:exported="true">
-
+            android:authorities="com.m.appas"
+            android:exported="true"
+            android:grantUriPermissions="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.app.slice.category.SLICE" />
             </intent-filter>
         </provider>
     </application>
-
 </manifest>

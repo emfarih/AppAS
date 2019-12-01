@@ -1,4 +1,4 @@
-package com.tokopedia.test.provider
+package com.m.appas.provider
 
 import android.content.Context
 import android.net.Uri
@@ -8,7 +8,7 @@ import androidx.slice.SliceProvider
 import androidx.slice.builders.ListBuilder
 import androidx.slice.builders.header
 import androidx.slice.builders.list
-import com.tokopedia.test.R
+import com.m.appas.R
 
 class MainSliceProvider : SliceProvider() {
     private lateinit var contextNonNull: Context

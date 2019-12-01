@@ -1,4 +1,4 @@
-package com.tokopedia.test
+package com.m.appas
 
 import org.junit.Test
 
