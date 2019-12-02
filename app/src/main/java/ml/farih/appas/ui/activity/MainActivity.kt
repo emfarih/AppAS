@@ -1,4 +1,4 @@
-package com.m.appas.ui.activity
+package ml.farih.appas.ui.activity
 
 import android.content.ContentResolver
 import android.content.Context
@@ -6,30 +6,35 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.service.voice.VoiceInteractionService
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.slice.SliceManager
-import com.m.appas.R
-import com.m.appas.data.Repository
-import com.m.appas.di.DaggerAppComponent
-import com.m.appas.ui.provider.MainSliceProvider
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.lang.Exception
-import javax.inject.Inject
+import com.google.firebase.appindexing.Action
+import com.google.firebase.appindexing.FirebaseUserActions
+import com.google.firebase.appindexing.builders.AssistActionBuilder
+import ml.farih.appas.R
 
 
 class MainActivity : AppCompatActivity() {
     @Suppress("PrivatePropertyName")
-    private val SLICE_AUTHORITY = "com.m.appas"
+    private val SLICE_AUTHORITY = "ml.farih.appas"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        getIntentData()
         grantSlicePermissions()
+    }
+
+    private fun getIntentData() {
+//        val action = intent.action
+        val data = intent.data
+        if (data != null) {
+            when (data.lastPathSegment) {
+                "main" -> notifyActionStatus(Action.Builder.STATUS_TYPE_COMPLETED)
+                else -> notifyActionStatus(Action.Builder.STATUS_TYPE_FAILED)
+            }
+        }
     }
 
     private fun grantSlicePermissions() {
@@ -53,5 +58,17 @@ class MainActivity : AppCompatActivity() {
         return if (resolveInfoList.isEmpty()) {
             null
         } else resolveInfoList[0].serviceInfo.packageName
+    }
+
+    private val actionTokenExtra = "actions.fulfillment.extra.ACTION_TOKEN"
+
+    private fun notifyActionStatus(status: String) {
+        val actionToken = intent.getStringExtra(actionTokenExtra)
+        @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS") val action =
+            AssistActionBuilder()
+                .setActionToken(actionToken)
+                .setActionStatus(status)
+                .build()
+        FirebaseUserActions.getInstance().end(action)
     }
 }

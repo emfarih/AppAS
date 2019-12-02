@@ -4,7 +4,7 @@
         <parameter name="feature">
             <entity-set-reference entitySetId="FeatureEntitySet" />
         </parameter>
-        <fulfillment urlTemplate="m://appas/{featureName}">
+        <fulfillment urlTemplate="http://appas.farih.ml/{featureName}">
             <parameter-mapping
                 intentParameter="feature"
                 urlParameter="featureName" />
@@ -13,7 +13,7 @@
     <action intentName="actions.intent.GET_ACCOUNT">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://com.m.appas/{sliceView}">
+            urlTemplate="content://ml.farih.appas/{sliceView}">
             <parameter-mapping
                 intentParameter="account.name"
                 urlParameter="sliceView" />

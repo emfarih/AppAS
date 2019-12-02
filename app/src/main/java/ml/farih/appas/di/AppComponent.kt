@@ -1,7 +1,7 @@
-package com.m.appas.di
+package ml.farih.appas.di
 
-import com.m.appas.ui.activity.MainActivity
-import com.m.appas.ui.provider.MainSliceProvider
+import ml.farih.appas.ui.activity.MainActivity
+import ml.farih.appas.ui.provider.MainSliceProvider
 import dagger.Component
 
 @Component(modules = [RetrofitModule::class, RepositoryModule::class])

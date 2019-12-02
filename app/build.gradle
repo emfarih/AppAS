@@ -2,11 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.m.appas"
+        applicationId "ml.farih.appas"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 2
@@ -49,5 +50,9 @@ dependencies {
     // Slice
     implementation "androidx.slice:slice-builders-ktx:1.0.0-alpha6"
 
+    // Firebase App Indexing
+    implementation 'com.google.firebase:firebase-appindexing:19.0.0'
+
     testImplementation 'junit:junit:4.12'
+    implementation 'com.google.firebase:firebase-appindexing'
 }

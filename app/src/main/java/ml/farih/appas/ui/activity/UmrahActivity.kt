@@ -1,8 +1,8 @@
-package com.m.appas.ui.activity
+package ml.farih.appas.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.m.appas.R
+import ml.farih.appas.R
 
 class UmrahActivity : AppCompatActivity() {
 

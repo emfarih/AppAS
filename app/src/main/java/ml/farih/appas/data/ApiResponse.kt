@@ -1,4 +1,4 @@
-package com.m.appas.data
+package ml.farih.appas.data
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,6 +1,6 @@
-package com.m.appas.di
+package ml.farih.appas.di
 
-import com.m.appas.data.ApiService
+import ml.farih.appas.data.ApiService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitModule {
     @Provides
     fun provideApiService(): ApiService {
-        val retrofit =  Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://appas-99f6.restdb.io/rest/")
             .build()

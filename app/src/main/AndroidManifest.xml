@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.m.appas">
+    package="ml.farih.appas">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -12,45 +12,57 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <meta-data android:name="com.google.android.actions" android:resource="@xml/actions" />
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/actions" />
 
-        <activity android:name="com.m.appas.ui.activity.UmrahActivity">
+        <activity android:name="ml.farih.appas.ui.activity.UmrahActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="m"
-                    android:host="appas"
-                    android:pathPrefix="/umrah" />
+
+                <data
+                    android:host="appas.farih.ml"
+                    android:pathPrefix="/umrah"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name="com.m.appas.ui.activity.SecondActivity">
+        <activity android:name="ml.farih.appas.ui.activity.SecondActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="m"
-                    android:host="appas"
-                    android:pathPrefix="/second" />
+
+                <data
+                    android:host="appas.farih.ml"
+                    android:pathPrefix="/second"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name="com.m.appas.ui.activity.MainActivity">
+        <activity android:name="ml.farih.appas.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="m"
-                    android:host="appas"
-                    android:pathPrefix="/main" />
+
+                <data
+                    android:host="appas.farih.ml"
+                    android:pathPrefix="/main"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
+
         <provider
-            android:name="com.m.appas.ui.provider.MainSliceProvider"
-            android:authorities="com.m.appas"
+            android:name="ml.farih.appas.ui.provider.MainSliceProvider"
+            android:authorities="ml.farih.appas"
             android:exported="true"
             android:grantUriPermissions="true">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.m.appas
+package ml.farih.appas
 
 import org.junit.Test
 
