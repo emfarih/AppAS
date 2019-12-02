@@ -6,6 +6,9 @@ data class ApiResponse(
     @SerializedName("name")
     val name: String = "Loading...",
 
+    @SerializedName("subtitle")
+    val subtitle: String = "",
+
     @SerializedName("image_uri")
     val imageUri: String = ""
 )

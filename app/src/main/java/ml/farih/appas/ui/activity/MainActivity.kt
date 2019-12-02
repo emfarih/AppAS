@@ -11,6 +11,7 @@ import androidx.slice.SliceManager
 import com.google.firebase.appindexing.Action
 import com.google.firebase.appindexing.FirebaseUserActions
 import com.google.firebase.appindexing.builders.AssistActionBuilder
+import kotlinx.android.synthetic.main.activity_main.*
 import ml.farih.appas.R
 
 
@@ -27,12 +28,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getIntentData() {
-//        val action = intent.action
+        val action = intent.action
         val data = intent.data
-        if (data != null) {
+        if (action == Intent.ACTION_VIEW && data != null) {
             when (data.lastPathSegment) {
                 "main" -> notifyActionStatus(Action.Builder.STATUS_TYPE_COMPLETED)
-                else -> notifyActionStatus(Action.Builder.STATUS_TYPE_FAILED)
+                else -> tv_data.text = data.lastPathSegment
             }
         }
     }

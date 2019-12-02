@@ -13,10 +13,13 @@
     <action intentName="actions.intent.GET_ACCOUNT">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://ml.farih.appas/{sliceView}">
-            <parameter-mapping
-                intentParameter="account.name"
-                urlParameter="sliceView" />
+            urlTemplate="content://ml.farih.appas/account">
+        </fulfillment>
+    </action>
+    <action intentName="actions.intent.GET_ORDER">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://ml.farih.appas/order">
         </fulfillment>
     </action>
     <entity-set entitySetId="FeatureEntitySet">

@@ -53,6 +53,10 @@ dependencies {
     // Firebase App Indexing
     implementation 'com.google.firebase:firebase-appindexing:19.0.0'
 
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.firebase:firebase-appindexing'
 }
