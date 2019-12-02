@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.m.appas">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +14,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <meta-data android:name="com.google.android.actions" android:resource="@xml/actions" />
 
-        <activity android:name=".activity.UmrahActivity">
+        <activity android:name="com.m.appas.ui.activity.UmrahActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -23,7 +24,7 @@
                     android:pathPrefix="/umrah" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SecondActivity">
+        <activity android:name="com.m.appas.ui.activity.SecondActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -33,7 +34,7 @@
                     android:pathPrefix="/second" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.m.appas.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -48,7 +49,7 @@
             </intent-filter>
         </activity>
         <provider
-            android:name=".provider.MainSliceProvider"
+            android:name="com.m.appas.ui.provider.MainSliceProvider"
             android:authorities="com.m.appas"
             android:exported="true"
             android:grantUriPermissions="true">

@@ -1,4 +1,4 @@
-package com.m.appas.activity
+package com.m.appas.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package com.m.appas.activity
+package com.m.appas.ui.activity
 
 import android.content.ContentResolver
 import android.content.Context
@@ -6,9 +6,20 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.service.voice.VoiceInteractionService
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.slice.SliceManager
 import com.m.appas.R
+import com.m.appas.data.Repository
+import com.m.appas.di.DaggerAppComponent
+import com.m.appas.ui.provider.MainSliceProvider
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
