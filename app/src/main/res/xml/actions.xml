@@ -22,6 +22,12 @@
             urlTemplate="content://ml.farih.appas/order">
         </fulfillment>
     </action>
+    <action intentName="actions.intent.PAY_INVOICE">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://ml.farih.appas/pay_invoice">
+        </fulfillment>
+    </action>
     <entity-set entitySetId="FeatureEntitySet">
         <entity
             name="main feature"
