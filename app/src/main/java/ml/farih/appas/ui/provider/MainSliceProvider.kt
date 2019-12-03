@@ -16,13 +16,12 @@ import androidx.slice.builders.ListBuilder.*
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import ml.farih.appas.R
 import ml.farih.appas.data.ApiResponse
 import ml.farih.appas.data.Repository
 import ml.farih.appas.di.DaggerAppComponent
 import ml.farih.appas.ui.activity.MainActivity
 import javax.inject.Inject
-import ml.farih.appas.R
-
 
 @SuppressLint("Slices")
 class MainSliceProvider : SliceProvider() {
@@ -48,21 +47,28 @@ class MainSliceProvider : SliceProvider() {
         return null
     }
 
-    private fun createPayInvoiceSlice(sliceUri: Uri): Slice? {
-        val futureTarget = Glide.with(contextNonNull)
-            .asBitmap()
-            .load(data[2].imageUri)
-            .submit()
-        val bitmap = futureTarget.get()
-
-
+    private fun createPayInvoiceSlice(sliceUri: Uri): Slice {
+        val mainPendingIntent = PendingIntent.getActivity(
+            contextNonNull,
+            sliceUri.hashCode(),
+            Intent(contextNonNull, MainActivity::class.java),
+            0
+        )
         if (data[2].name == "Loading...") getDataFromNetwork(sliceUri)
         return list(contextNonNull, sliceUri, INFINITY) {
-            setAccentColor(0xff4285) // Specify color for tinting icons / controls.
-            row {
-                title = "Wi-Fi"
-                addEndItem(createWithBitmap(bitmap), SMALL_IMAGE)
+            setAccentColor(ContextCompat.getColor(contextNonNull, R.color.colorAccent))
+            header {
+                title = data[2].name
+                subtitle = data[2].subtitle
             }
+            addAction(
+                SliceAction.create(
+                    mainPendingIntent,
+                    createWithResource(contextNonNull, R.drawable.card_search),
+                    ICON_IMAGE,
+                    ""
+                )
+            )
         }
     }
 
@@ -80,6 +86,8 @@ class MainSliceProvider : SliceProvider() {
             header {
                 title = data[1].name
                 subtitle = data[1].subtitle
+
+                // Must be included to show the gridRow
                 primaryAction = SliceAction.create(
                     mainPendingIntent,
                     createWithResource(contextNonNull, R.drawable.card_search),
