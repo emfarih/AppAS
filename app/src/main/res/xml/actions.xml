@@ -13,7 +13,10 @@
     <action intentName="actions.intent.GET_ACCOUNT">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://ml.farih.appas/account">
+            urlTemplate="content://ml.farih.appas/account{?name}">
+            <parameter-mapping
+                intentParameter="account.name"
+                urlParameter="name"/>
         </fulfillment>
     </action>
     <action intentName="actions.intent.GET_ORDER">
@@ -25,7 +28,25 @@
     <action intentName="actions.intent.PAY_INVOICE">
         <fulfillment
             fulfillmentMode="actions.fulfillment.SLICE"
-            urlTemplate="content://ml.farih.appas/pay_invoice">
+            urlTemplate="content://ml.farih.appas/pay_invoice{?serviceName,amountValue,amountCurrency}">
+            <parameter-mapping
+                intentParameter="invoice.forService.name"
+                urlParameter="serviceName"/>
+            <parameter-mapping
+                intentParameter="amount.value"
+                urlParameter="amountValue"/>
+            <parameter-mapping
+                intentParameter="amount.currency"
+                urlParameter="amountCurrency"/>
+        </fulfillment>
+    </action>
+    <action intentName="actions.intent.GET_INVOICE">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://ml.farih.appas/get_invoice{?serviceName}">
+            <parameter-mapping
+                intentParameter="invoice.forService.name"
+                urlParameter="serviceName"/>
         </fulfillment>
     </action>
     <entity-set entitySetId="FeatureEntitySet">

@@ -39,12 +39,61 @@ class MainSliceProvider : SliceProvider() {
     }
 
     override fun onBindSlice(sliceUri: Uri): Slice? {
-        when (sliceUri.path) {
-            "/account" -> return createAccountSlice(sliceUri)
-            "/order" -> return createOrderSlice(sliceUri)
-            "/pay_invoice" -> return createPayInvoiceSlice(sliceUri)
+        Log.e("SLICE", sliceUri.query.toString())
+        return when (sliceUri.path) {
+            "/account" -> createAccountSlice(sliceUri)
+            "/order" -> createOrderSlice(sliceUri)
+            "/pay_invoice" -> createPayInvoiceSlice(sliceUri)
+            "/get_invoice" -> createGetInvoiceSlice(sliceUri)
+            else -> null
         }
-        return null
+    }
+
+    private fun createGetInvoiceSlice(sliceUri: Uri): Slice? {
+        val mainPendingIntent = PendingIntent.getActivity(
+            contextNonNull,
+            sliceUri.hashCode(),
+            Intent(contextNonNull, MainActivity::class.java),
+            0
+        )
+        return list(contextNonNull, sliceUri, INFINITY) {
+            setAccentColor(ContextCompat.getColor(contextNonNull, R.color.colorAccent))
+            if (sliceUri.getQueryParameter("serviceName") != null) {
+                header {
+                    title = "Tagihan ${sliceUri.getQueryParameter("serviceName")}"
+                    subtitle = "IDR 299.999"
+                }
+            } else {
+                header {
+                    title = "Tagihan Listrik"
+                    subtitle = "IDR 299.999"
+
+                    // Must be included to show the next row
+                    primaryAction = SliceAction.create(
+                        mainPendingIntent,
+                        createWithResource(contextNonNull, R.drawable.card_search),
+                        ICON_IMAGE,
+                        "SEARCH"
+                    )
+                }
+                row {
+                    title = "Tagihan Internet"
+                    subtitle = "IDR 199.999"
+                }
+                row {
+                    title = "Tagihan Air"
+                    subtitle = "IDR 249.999"
+                }
+            }
+//            addAction(
+//                SliceAction.create(
+//                    mainPendingIntent,
+//                    createWithResource(contextNonNull, R.drawable.open_in_new),
+//                    ICON_IMAGE,
+//                    ""
+//                )
+//            )
+        }
     }
 
     private fun createPayInvoiceSlice(sliceUri: Uri): Slice {
@@ -55,16 +104,22 @@ class MainSliceProvider : SliceProvider() {
             0
         )
         if (data[2].name == "Loading...") getDataFromNetwork(sliceUri)
+        val amountCurrency =
+            if (sliceUri.getQueryParameter("amountCurrency") != null) sliceUri.getQueryParameter("amountCurrency")
+            else "IDR"
+        val amountValue =
+            if (sliceUri.getQueryParameter("amountValue") != null) sliceUri.getQueryParameter("amountValue")
+            else "299.999"
         return list(contextNonNull, sliceUri, INFINITY) {
             setAccentColor(ContextCompat.getColor(contextNonNull, R.color.colorAccent))
             header {
-                title = data[2].name
-                subtitle = data[2].subtitle
+                title = "Bayar Tagihan ${sliceUri.getQueryParameter("serviceName")}"
+                subtitle = "Total : $amountCurrency $amountValue"
             }
             addAction(
                 SliceAction.create(
                     mainPendingIntent,
-                    createWithResource(contextNonNull, R.drawable.card_search),
+                    createWithResource(contextNonNull, R.drawable.credit_card_outline),
                     ICON_IMAGE,
                     ""
                 )
